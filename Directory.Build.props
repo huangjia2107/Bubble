@@ -1,0 +1,26 @@
+<Project>
+  <PropertyGroup>
+    <UseWPF>true</UseWPF>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>Bubble</Title>
+    <PackageId>BubbleNetCore</PackageId>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Version>$(PackageVersion)</Version>
+    <Copyright>Copyright © 2021</Copyright>
+    <Authors>huangjia2107</Authors>
+    <Description>This is a micro mvvm library for wpf</Description>
+    <IncludeSymbols>True</IncludeSymbols>
+    <IncludeSource>True</IncludeSource>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/huangjia2107/Bubble</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/huangjia2107/Bubble</PackageProjectUrl>
+    <PrismLicenseFile>LICENSE</PrismLicenseFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>bubble;mvvm;xaml;event</PackageTags>
+  </PropertyGroup>
+</Project>

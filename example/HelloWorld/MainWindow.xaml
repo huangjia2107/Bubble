@@ -1,0 +1,65 @@
+﻿<Window x:Class="HelloWorld.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:bubble="https://github.com/huangjia2107/Bubble"
+        xmlns:models="clr-namespace:HelloWorld.Models"
+        Title="Hello World" Height="450" Width="800" Background="#F0F0F0">
+    <bubble:Interaction.Behavior>
+        <bubble:RoutedEventBehavior HandledEventsToo="True" 
+                                    HandleRoutedEventAction="{Binding HandleRoutedEventAction}" 
+                                    RoutedEvents="{Binding MyEvents}"/>
+    </bubble:Interaction.Behavior>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Width="100" Height="40" Content="添加"
+                    bubble:EventParameter.Key="{x:Static models:RoutedEventKeys.AddItemKey}"/>
+            <Button Width="100" Height="40" Content="删除" Margin="20,0"
+                    bubble:EventParameter.Key="{x:Static models:RoutedEventKeys.DeleteItemKey}"/>
+            <Button Width="100" Height="40" Content="清空"
+                    bubble:EventParameter.Key="{x:Static models:RoutedEventKeys.ClearItemKey}"/>
+            <Button Width="100" Height="40" Content="清空事件记录" Margin="20,0"
+                    bubble:EventParameter.Key="{x:Static models:RoutedEventKeys.ClearEventHistoryKey}"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="10,0,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox Background="White" BorderThickness="0"
+                     ItemsSource="{Binding MyItems}"
+                     SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                     HorizontalContentAlignment="Stretch"
+                     VerticalContentAlignment="Stretch">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="6" VerticalAlignment="Top"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Height="100" Background="AliceBlue"
+                                bubble:EventParameter.Key="{x:Static models:RoutedEventKeys.DoubleClickItemKey}">
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <GridSplitter Grid.Column="1" Width="10" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+            <ListBox Grid.Column="2" Background="White" BorderThickness="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ItemsSource="{Binding EventHistory}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding .,StringFormat=&gt;{0}}" TextWrapping="Wrap"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>
